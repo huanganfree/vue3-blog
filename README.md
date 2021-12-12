@@ -1,5 +1,6 @@
 # 移动端博客项目简单模板
-
+ 主要供学习vue3新语法，练习node使用。
+ 
 ## 技术
 - 前端技术栈：vue3 + vue-router4 + vuex4
 - 后端技术栈：node + express + mysql
