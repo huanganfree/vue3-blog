@@ -1,24 +1,28 @@
-# vue3-test
+# 移动端博客项目简单模板
 
-## Project setup
-```
-npm install
-```
+## 技术
+- 前端技术栈：vue3 + vue-router4 + vuex4
+- 后端技术栈：node + express + mysql
 
-### Compiles and hot-reloads for development
+
+## 部分页面展示
+
+
+## 快速开始
+
+### 前端服务启动
 ```
 npm run serve
 ```
+### 后端服务启动
+进入到server目录下
 
-### Compiles and minifies for production
+```
+npm run start:server
+```
+### 打包
 ```
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

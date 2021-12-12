@@ -1,26 +1,38 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="content">
+    <router-view />
+  </div>
+  <template v-if="$route.name !== '登录'">
+    <TabBar />  
+  </template>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { onMounted } from '@vue/runtime-core';
+import TabBar from './components/TabBar.vue'
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    TabBar
+  },
+  setup() {
+    onMounted(() => {
+    })
   }
-}
+};
 </script>
 
 <style>
+*{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
