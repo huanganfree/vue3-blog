@@ -2,7 +2,7 @@
  主要供学习vue3新语法，练习node使用。
  
 ## 技术
-- 前端技术栈：vue3 + vue-router4 + vuex4
+- 前端技术栈：vue3 + vant + vue-router4 + vuex4
 - 后端技术栈：node + express + mysql
 
 
