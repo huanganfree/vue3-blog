@@ -22,9 +22,5 @@ npm run serve
 ```
 npm run start:server
 ```
-### 打包
-```
-npm run build
-```
 
 
