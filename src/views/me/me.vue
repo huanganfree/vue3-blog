@@ -26,13 +26,11 @@ export default {
     const handleLogOout = () => {
       router.push('/')
     }
-    return { 
+    return {
       handleLogOout
     }
   },
-  methods: {
-
-  }
+  methods: {}
 };
 </script>
 

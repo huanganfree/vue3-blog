@@ -1,5 +1,4 @@
 // 连接数据库
-
 const mysql = require('mysql');
 const dbConfig = require('./db.config');
 

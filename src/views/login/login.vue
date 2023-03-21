@@ -79,6 +79,7 @@ export default {
 }
 h5 {
   font-size: 25px;
+  display: none;
 }
 .checkCode{
   width: 100px;
