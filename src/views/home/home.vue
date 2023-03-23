@@ -10,7 +10,6 @@
       class="bg-img"
     />
   </div>
-  <component :is="com" />
 </template>
 
 <script>
@@ -21,7 +20,6 @@ import { ref } from '@vue/reactivity';
 export default {
   name: "Home",
   components:{
-    HomeOutlined
   },
   setup(){
     const num = ref(10)
