@@ -1,50 +1,70 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
+import MainPage from '@/components/MainPage.vue'
 
 const _import = router => () => import(`@/views/${router}.vue`) // 路由懒加载
-
-
-
-const routes = [
-  {
-    path: '/home',
+const tabBarRoutes = [
+  { 
+    path: '/main/home',
     name: '首页',
-    meta:{
+    meta: {
       icon: 'icon-shouye', // 存储路由icon
     },
     component: _import('home/home')
   },
   {
-    path: '/photo',
+    path: '/main/photo',
     name: '相册',
-    meta:{
+    meta: {
       icon: 'icon-xiangce',
     },
     component: _import('photo/photo')
   },
   {
-    path: '/me',
+    path: '/main/me',
     name: '我的',
-    meta:{
+    meta: {
       icon: 'icon-gerenzhongxin',
     },
     component: _import('me/me')
   }
 ]
 
-const allRoutes = [
+const routes = [
+  {
+    path: '/login',
+    name: 'login_self',
+    component: _import('login/login'),
+    meta: {
+      title: '登录'
+    }
+  },
+  {
+    path: '/main',
+    component: MainPage,
+    children: [
+      ...tabBarRoutes
+    ]
+  },
   {
     path: '/',
-    redirct: '/login',
-    name: '登录',
-    component: _import('login/login')
+    redirect: '/login', // 避免单词写错
   },
-  ...routes
+  {
+    path: '/:catchAll(.*)',
+    name: '404',
+    meta: {
+      title: '404'
+    },
+    component: _import('errorPage/error404')
+  }
 ]
 
+
 const router = createRouter({
-  history: createWebHashHistory(),
-  routes: allRoutes
+  history: createWebHistory(),
+  routes,
+  strict: true,
+  sensitive: true
 })
 
-export { router, routes }
-  
+export { router, tabBarRoutes as routes }

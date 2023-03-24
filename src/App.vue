@@ -2,20 +2,12 @@
   <div class="content">
     <router-view />
   </div>
-  <template v-if="$route.name !== '登录'">
-    <TabBar />  
-  </template>
 </template>
 
 <script>
 import { onMounted } from '@vue/runtime-core';
-import TabBar from './components/TabBar.vue'
-
 export default {
   name: "App",
-  components: {
-    TabBar
-  },
   setup() {
     onMounted(() => {
     })

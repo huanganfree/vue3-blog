@@ -3,9 +3,6 @@
     class="loginForm"
     @submit="onSubmit"
   >
-    <h5 class="loginForm-blogTitle">
-      博客
-    </h5>
     <van-cell-group inset>
       <van-field
         v-model="username"
@@ -13,8 +10,8 @@
         label="用户名"
         placeholder="用户名"
         :rules="[{ required: true, message: '请填写用户名' }]"
-        autocomplete="off"
-      />
+        autocomplete="off" 
+      /> 
       <van-field
         v-model="password"
         :type="eyeIconChange"
@@ -54,13 +51,6 @@
 .loginForm {
   margin-top: 25vh;
 }
-h5 {
-  font-size: 25px;
-  display: none;
-}
-.loginForm-blogTitle{
-  text-align: center;
-}
 </style>
 <script>
 import { useRouter } from 'vue-router'
@@ -78,7 +68,7 @@ export default {
       requestLogin(values)
         .then(res => {
           if(res.code === 200) {
-            router.push('/home')
+            router.push('/main/home')
           } else {
             Notify({
               message: res.message || '请求失败',
