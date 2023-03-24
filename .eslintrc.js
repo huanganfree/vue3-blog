@@ -23,6 +23,7 @@ module.exports = {
                 "allowUsingIterationVar": true
             }
         ],
-        "no-debugger": "off"
+        "no-debugger": "off",
+        "vue/component-tags-order": "off"
     }
 }
