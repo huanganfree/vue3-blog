@@ -25,14 +25,9 @@ service.interceptors.response.use(function (response) {
         message: res.message || '登录失效，请重新登录',
         type: 'danger'
       });
-      return
+      return // 必须的防止二次提示
     }
-    Notify({
-      message: res.message || '请求失败',
-      duration: 2300,
-    });
   }
-  console.log(res);
   return res;
 }, function (error) {
   console.log('response-error==', error.response);

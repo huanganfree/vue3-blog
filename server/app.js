@@ -1,5 +1,11 @@
+/**
+ * 接口code返回定义：
+ * 1.
+ * 2.登录失效401，无权限403， 成功200
+ * 3.成功为200，其他失败111000
+ */
 const express = require('express')
-const app = express() // 这个app是什么？
+const app = express()
 const loginRouter = require('./routers/login')
 
 // 所有的路由，统一配置cors
