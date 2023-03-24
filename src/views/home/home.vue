@@ -5,35 +5,12 @@
     <img
       :src="imgUrl"
       alt=""
-    >
-    <div
+    > 
+    <div 
       class="bg-img"
-    />
+    /> 
   </div>
 </template>
-
-<script>
-import {
-  HomeOutlined,
-} from '@ant-design/icons-vue';
-import { ref } from '@vue/reactivity';
-export default {
-  name: "Home",
-  components:{
-  },
-  setup(){
-    const num = ref(10)
-    const imgUrl = ref(require('@/assets/me.jpg'))
-    return {
-      num,
-      imgUrl,
-      com: 'HomeOutlined'
-    }
-  },
-  methods: {},
-};
-</script>
-
 <style scoped lang='scss'>
 .home{
   font-size: 15px;
@@ -50,3 +27,23 @@ export default {
   }
 }
 </style>
+<script>
+import { ref } from 'vue';
+export default {
+  name: "Home",
+  components:{
+  }, 
+  setup(){ 
+    const num = ref(10) 
+    const imgUrl = ref(require('@/assets/me.jpg'))
+    return {
+      num, 
+      imgUrl,
+      com: 'HomeOutlined'
+    }
+  },
+  methods: {},
+};
+</script>
+
+
