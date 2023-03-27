@@ -2,10 +2,6 @@
   <div class="home">
     home
     {{ num }}
-    <img
-      :src="imgUrl"
-      alt=""
-    > 
     <div 
       class="bg-img"
     /> 
@@ -20,7 +16,6 @@
   }
   .bg-img{
     // display: none;
-    background: url('../../assets/1.png');
     background-size: cover;
     width: 200px;
     height: 100px;
@@ -35,10 +30,8 @@ export default {
   }, 
   setup(){ 
     const num = ref(10) 
-    const imgUrl = ref(require('@/assets/me.jpg'))
     return {
       num, 
-      imgUrl,
       com: 'HomeOutlined'
     }
   },

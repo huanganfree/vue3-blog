@@ -1,9 +1,5 @@
 <template>
   <div class="me">
-    <img
-      src="@/assets/me.jpg"
-      class="me-mePng"
-    >
     <div class="me-logoOut-btn">
       <van-button
         type="primary"
