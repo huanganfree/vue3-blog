@@ -16,6 +16,7 @@
           placeholder="用户名"
           :rules="[{ required: true, message: '请填写用户名' }]"
           autocomplete="off"
+          class="input-component"
         />
         <van-field
           v-model="password"
@@ -25,6 +26,7 @@
           placeholder="密码"
           :rules="[{ required: true, message: '请填写密码' }]"
           autocomplete="off"
+          class="input-component"
         >
           <template #right-icon>
             <van-icon
@@ -60,10 +62,14 @@
   background-image: linear-gradient(217deg,#6fb9f8,#3daaf85e,#49d3fc1a,#3fd3ff00);
 }
 .login-bg{
-  height: 3.3rem;
+  height: 4.3rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.input-component{
+  :deep(.van-field__control){
+  }
 }
 </style>
 <script>

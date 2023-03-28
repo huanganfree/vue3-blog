@@ -1,5 +1,6 @@
 <template>
   <div class="me">
+    <div class="me-bg" />
     <div class="me-logoOut-btn">
       <van-button
         type="primary"
