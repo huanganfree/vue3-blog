@@ -3,9 +3,10 @@ import { router } from './router/index'
 import App from './App.vue'
 import Vant, { Icon } from 'vant';
 import 'vant/lib/index.css';
+import './assets/style/main.scss';
 import './utils/rem.js'
 
-const app = createApp(App) // 创建应用实例
+const app = createApp(App)
 
 app.use(router).use(Vant).use(Icon)
 
