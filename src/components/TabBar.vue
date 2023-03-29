@@ -10,11 +10,14 @@
       :key="i"
       :to="item.path"
     >
-      {{ item.name }}
+      {{ item.meta.title }}
       <template #icon>
-        <div
-          :class="['iconfont', item.meta.icon]"
-        />
+        <svg
+          class="icon"
+          aria-hidden="true"
+        >
+          <use :xlink:href="`#${item.meta.icon}`" />
+        </svg>
       </template>
     </van-tabbar-item>
   </van-tabbar>
@@ -41,8 +44,7 @@ export default {
 </script>
 
 <style scoped lang='css'>
-.iconfont{
-  font-size: 23px;
-  font-weight: bold;
+.icon{
+  font-size: 24px;
 }
 </style>

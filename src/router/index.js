@@ -2,27 +2,30 @@ import { createRouter, createWebHistory } from 'vue-router'
 import MainPage from '@/components/MainPage.vue'
 
 const _import = router => () => import(`@/views/${router}.vue`) // 路由懒加载
-const tabBarRoutes = [
+const tabBarRoutes = [ // 用于tarBar组件的数组，统一数据源
   { 
     path: '/main/home',
-    name: '首页',
+    name: 'home',
     meta: {
+      title: '首页',
       icon: 'icon-shouye', // 存储路由icon
     },
     component: _import('home/home')
   },
   {
     path: '/main/photo',
-    name: '相册',
+    name: 'photo',
     meta: {
+      title: '相册',
       icon: 'icon-xiangce',
     },
     component: _import('photo/photo')
   },
   {
     path: '/main/me',
-    name: '我的',
+    name: 'me',
     meta: {
+      title: '我的',
       icon: 'icon-gerenzhongxin',
     },
     component: _import('me/me')
@@ -42,12 +45,20 @@ const routes = [
     path: '/main',
     component: MainPage,
     children: [
-      ...tabBarRoutes
+      ...tabBarRoutes,
+      {
+        path: '/about',
+        name: 'about',
+        component: _import('about/about'),
+        meta: {
+          title: '关于'
+        }
+      }
     ]
   },
   {
     path: '/',
-    redirect: '/login', // 避免单词写错
+    redirect: '/login'
   },
   {
     path: '/:catchAll(.*)',
@@ -58,7 +69,6 @@ const routes = [
     component: _import('errorPage/error404')
   }
 ]
-
 
 const router = createRouter({
   history: createWebHistory(),

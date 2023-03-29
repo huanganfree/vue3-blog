@@ -90,7 +90,7 @@ export default {
       requestLogin(values)
         .then(res => {
           if (res.code === 200) {
-            router.push('/main/home')
+            router.push('/main/me')
           } else {
             Notify({
               message: res.message || '请求失败',
