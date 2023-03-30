@@ -12,7 +12,6 @@ service.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
   return config;
 }, function (error) {
-  console.log('request-error==', error.response);
   return Promise.reject(error);
 });
 
@@ -30,7 +29,7 @@ service.interceptors.response.use(function (response) {
   }
   return res;
 }, function (error) {
-  console.log('response-error==', error.response);
+  error.response = error.response || {}
   const { status } = error.response
   const { message } = error.response.data || {}
   if (status === 401) {

@@ -8,15 +8,18 @@ const express = require('express')
 const app = express()
 const loginRouter = require('./routers/login')
 
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
 // 所有的路由，统一配置cors
-app.use((req, res, next) =>{
-  res.setHeader("Access-Control-Allow-Origin", "*")
+app.use(function (req, res, next) {
+  res.set('Access-Control-Allow-Origin',  req.get('Origin'))
+  res.set("Access-Control-Allow-Headers", "Content-Type,Access-Token"); // 必须设置
+  res.set("Access-Control-Allow-Methods", "*");
   next()
 })
 
-// 登录接口路由
-app.use('/login', loginRouter)
-
+app.use('/', loginRouter)
 
 app.listen(8000, () => {
   console.log('server is running in 8000!');

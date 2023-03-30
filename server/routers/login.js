@@ -6,9 +6,9 @@ router.use((req, res, next) => {
   next()
 })
 
-router.post('/', function (req, res) {
-  console.log(req);
-  dbQueryPromise(`SELECT password FROM user WHERE username = '${req.query.username}'`) //mysql中间件无法识别传入参数
+router.post('/login', function (req, res) {
+  const { username, password } = req.body || {}
+  dbQueryPromise(`SELECT password FROM user WHERE username = '${username}'`) //mysql中间件无法识别传入参数
     .then((results) => {
       console.log('results==', results);
       const [obj] = results
@@ -17,15 +17,15 @@ router.post('/', function (req, res) {
           code: 111000,
           message: '用户名或密码不正确'
         })
-      } else if(obj.password !== req.query.password) {
+      } else if(obj.password !== password) {
         res.json({
           code: 111000,
           message: '用户名或密码不正确'
         })
-      } else if(obj.password == req.query.password) {
+      } else if(obj.password == password) {
         res.json({
           code: 200,
-          message: '成功'
+          message: '登录成功'
         })
       }
     })
