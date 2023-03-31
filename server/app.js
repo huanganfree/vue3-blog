@@ -6,6 +6,7 @@
  */
 const express = require('express')
 const app = express()
+const cookieSession = require('cookie-session')
 const loginRouter = require('./routers/login')
 
 app.use(express.json()) // for parsing application/json
@@ -14,10 +15,16 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 // 所有的路由，统一配置cors
 app.use(function (req, res, next) {
   res.set('Access-Control-Allow-Origin',  req.get('Origin'))
-  res.set("Access-Control-Allow-Headers", "Content-Type,Access-Token"); // 必须设置
-  res.set("Access-Control-Allow-Methods", "*");
+  res.set("Access-Control-Allow-Headers", "Content-Type,Access-Token") // 必须设置
+  res.set("Access-Control-Allow-Methods", "*")
   next()
 })
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2'],
+  maxAge: 24 * 60 * 60 * 1000, // 24 hours
+}))
 
 app.use('/', loginRouter)
 

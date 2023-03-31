@@ -67,15 +67,11 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
-.input-component{
-  :deep(.van-field__control){
-  }
-}
 </style>
 <script>
 import { useRouter } from 'vue-router'
 import { ref } from "vue";
-import requestLogin from '@/api/login.js'
+import { requestLogin } from '@/api/login.js'
 import { Notify } from 'vant';
 import LoginBg from '@/assets/image/login-bg.png';
 
