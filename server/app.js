@@ -6,11 +6,15 @@
  */
 const express = require('express')
 const app = express()
-const cookieSession = require('cookie-session')
+// const cookieSession = require('cookie-session')
 const loginRouter = require('./routers/login')
+const aboutRouter = require('./routers/about')
+const uploadRouter = require('./routers/multer/upload')
+const { port } = require('./utils/commonData')
 
-app.use(express.json()) // for parsing application/json
-app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use('/public/', express.static('./public/')) // 开启静态资源服务
 
 // 所有的路由，统一配置cors
 app.use(function (req, res, next) {
@@ -20,14 +24,15 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.use(cookieSession({
-  name: 'session',
-  keys: ['key1', 'key2'],
-  maxAge: 24 * 60 * 60 * 1000, // 24 hours
-}))
+// app.use(cookieSession({
+//   name: 'session',
+//   keys: ['key1', 'key2'],
+//   maxAge: 10 * 60 * 1000
+// }))
 
-app.use('/', loginRouter)
+app.use('/', [loginRouter, aboutRouter, uploadRouter])
 
-app.listen(8000, () => {
+app.listen(port, () => {
   console.log('server is running in 8000!');
 })
+

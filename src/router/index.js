@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import MainPage from '@/components/MainPage.vue'
 
 const _import = router => () => import(`@/views/${router}.vue`) // 路由懒加载
-const tabBarRoutes = [ // 用于tarBar组件的数组，统一数据源
+const tabBarData = [ // 用于tarBar组件的数组，统一数据源
   { 
     path: '/main/home',
     name: 'home',
@@ -45,13 +45,21 @@ const routes = [
     path: '/main',
     component: MainPage,
     children: [
-      ...tabBarRoutes,
+      ...tabBarData,
       {
         path: '/about',
         name: 'about',
         component: _import('about/about'),
         meta: {
           title: '关于'
+        }
+      },
+      {
+        path: '/userInfo',
+        name: 'userInfo',
+        component: _import('userInfo/userInfo'),
+        meta: {
+          title: '用户信息修改'
         }
       }
     ]
@@ -77,4 +85,4 @@ const router = createRouter({
   sensitive: true
 })
 
-export { router, tabBarRoutes as routes }
+export { router, tabBarData as routes }

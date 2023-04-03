@@ -7,7 +7,7 @@
       <div class="user-info">
         <div class="user-name">
           <div class="name">
-            <span>昵称：</span>
+            <span>用户名：</span>
             <span>admin</span>
           </div>
           <div class="signature">
@@ -137,7 +137,7 @@ export default {
   name:'Me',
   setup() {
     const operationList = [
-      {icon: 'icon-xiugai',  name: '用户信息修改'},
+      {icon: 'icon-xiugai',  name: '用户信息修改', path: '/userInfo'},
       {icon: 'icon-A',  name: '重置密码'},
       {icon: 'icon-guanyuwomen',  name: '关于我们', path: '/about'}
     ]

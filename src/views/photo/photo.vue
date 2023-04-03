@@ -4,26 +4,20 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 export default {
   name:'Photo',
   components: {},
   data() {
-    return {
-    };
+    return {}
   },
   created() {
-
   },
   mounted() {
-
   },
-  methods: {
-
-  }
+  methods: {}
 };
 </script>
 
 <style scoped lang='scss'>
-
 </style>
