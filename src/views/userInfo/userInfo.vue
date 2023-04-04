@@ -38,16 +38,13 @@ export default {
   setup(){
     const imgList = ref([])
     const afterRead = (file) => {
-      // 此时可以自行将文件上传至服务器
-      console.log(file);
       const formData = new FormData()
       formData.append('file', file.file)
       requestUserInfoUpload(formData)
         .then(res => {
-          console.log(res);
           const { code, message, data } = res
           if(code == 200){
-            imgList.value = [data]
+            imgList.value = [{url: data}]
           } else {
             this.$notify(message)
           }

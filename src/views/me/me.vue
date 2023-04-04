@@ -149,8 +149,7 @@ export default {
       handleLogOout,
       operationList
     }
-  },
-  methods: {}
+  }
 };
 </script>
 

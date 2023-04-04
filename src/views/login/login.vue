@@ -42,6 +42,9 @@
           </template>
         </van-field>
       </van-cell-group>
+      <div class="user-tip">
+        没有账号？去注册
+      </div>
       <div style="margin: 16px">
         <van-button
           round
@@ -67,6 +70,13 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+.user-tip{
+  font-size: 14px;
+  text-align: right;
+  margin: 10px 16px 0;
+  cursor: pointer;
+  color: #1989fa;
+}
 </style>
 <script>
 import { useRouter } from 'vue-router'
@@ -89,7 +99,7 @@ export default {
             router.push('/main/me')
           } else {
             Notify({
-              message: res.message || '请求失败',
+              message: res.message,
               type: 'danger'
             });
           }

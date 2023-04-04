@@ -3,14 +3,12 @@ const router = express.Router()
 const dbQueryPromise = require('../db/dbOperation')
 
 router.use((req, res, next) => {
-  console.log('req==', req.session);
   next()
 })
 
 router.get('/about', function(req, res) {
   dbQueryPromise(`SELECT * FROM about`) //mysql中间件无法识别传入参数
     .then((results) => {
-      console.log('results==', results);
       res.json({
         code: 200,
         message: '成功',

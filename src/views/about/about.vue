@@ -10,13 +10,14 @@
     >
       <div class="articel-wrapper">
         <div
-          v-if="listData.length"
+          v-for="item in listData"
+          :key="item.id"
           class="articel"
         >
-          {{ listData[0].article }}
+          {{ item.article }}
         </div>
         <van-empty
-          v-else
+          v-if="!listData.length"
           image="error"
           description="暂无数据"
         />
@@ -70,7 +71,7 @@ export default {
           if(code == 200){
             this.listData = data || []
           } else {
-            console.log(this);
+            this.listData = []
             this.$notify(message)
           }
         })
