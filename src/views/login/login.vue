@@ -41,9 +41,35 @@
             />
           </template>
         </van-field>
+        <van-field
+          v-if="isRegister"
+          v-model="verifyCode"
+          name="verifyCode"
+          center
+          label="验证码"
+          placeholder="请输入验证码"
+          :rules="[{ required: true, message: '请输入验证码' }]"
+        >
+          <template #button>
+            <div @click="updateVerifyCode">
+              <vue-verify-code
+                ref="verify"
+                :line-count="3"
+                @getCode="getCode"
+              />
+            </div>
+          </template>
+        </van-field>
       </van-cell-group>
-      <div class="user-tip">
-        没有账号？去注册
+      <div
+        class="user-tip"
+      >
+        <div
+          style="display: inline-block;"
+          @click="isRegister = !isRegister"
+        >
+          {{ !isRegister ? `没有账号？去注册` : `已有账号？去登录` }}
+        </div>
       </div>
       <div style="margin: 16px">
         <van-button
@@ -51,8 +77,8 @@
           block
           type="primary"
           native-type="submit"
-        > 
-          登录
+        >
+          {{ !isRegister ? `登录` : `注册` }}
         </van-button>
       </div>
     </van-form>
@@ -81,18 +107,32 @@
 <script>
 import { useRouter } from 'vue-router'
 import { ref } from "vue";
-import { requestLogin } from '@/api/login.js'
 import { Notify } from 'vant';
+import { requestLogin } from '@/api/login.js'
+import VueVerifyCode from 'vue-verify-code'
 import LoginBg from '@/assets/image/login-bg.png';
-
+let checkCode = ''
 export default {
+  components:{
+    'vue-verify-code':VueVerifyCode
+  },
   setup() {
     const username = ref("");
     const password = ref("");
     const eyeIconChange = ref('password');
     const router = useRouter()
+    const isRegister = ref(false)
+    const verifyCode = ref('')
     const loginBg = LoginBg
     const onSubmit = (values) => {
+      const { verifyCode } = values
+      if(verifyCode != checkCode && isRegister.value){
+        Notify({
+          message: '验证码错误',
+          type: 'danger'
+        });
+        return
+      }
       requestLogin(values)
         .then(res => {
           if (res.code === 200) {
@@ -117,8 +157,19 @@ export default {
       password,
       onSubmit,
       eyeIconChange,
-      loginBg
+      loginBg,
+      isRegister,
+      verifyCode
     };
+  },
+  methods:{
+    getCode(code) {
+      checkCode = code
+      console.log(checkCode);
+    },
+    updateVerifyCode(){
+      this.$refs.verify.display()
+    }
   },
 };
 </script>
