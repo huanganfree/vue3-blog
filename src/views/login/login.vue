@@ -13,8 +13,8 @@
           v-model="username"
           name="username"
           label="用户名"
-          placeholder="用户名"
-          :rules="[{ required: true, message: '请填写用户名' }]"
+          placeholder="用户名(长度至少6位)"
+          :rules="[{pattern: /^[A-Za-z0-9-@!%#]{6,}$/, message: '请输入至少6位'}]"
           autocomplete="off"
           class="input-component"
         />
@@ -23,8 +23,8 @@
           :type="eyeIconChange"
           name="password"
           label="密码"
-          placeholder="密码"
-          :rules="[{ required: true, message: '请填写密码' }]"
+          placeholder="密码(长度至少6位)"
+          :rules="[{pattern: /^[A-Za-z0-9-@!%#]{6,}$/, message: '请输入至少6位'}]"
           autocomplete="off"
           class="input-component"
         >
@@ -108,7 +108,7 @@
 import { useRouter } from 'vue-router'
 import { ref } from "vue";
 import { Notify } from 'vant';
-import { requestLogin } from '@/api/login.js'
+import { requestLogin, requestRegister } from '@/api/login.js'
 import VueVerifyCode from 'vue-verify-code'
 import LoginBg from '@/assets/image/login-bg.png';
 let checkCode = ''
@@ -126,31 +126,60 @@ export default {
     const loginBg = LoginBg
     const onSubmit = (values) => {
       const { verifyCode } = values
-      if(verifyCode != checkCode && isRegister.value){
-        Notify({
-          message: '验证码错误',
-          type: 'danger'
-        });
-        return
-      }
-      requestLogin(values)
-        .then(res => {
-          if (res.code === 200) {
-            router.push('/main/me')
-          } else {
-            Notify({
-              message: res.message,
-              type: 'danger'
-            });
-          }
-        })
-        .catch(err => {
-          console.log(err);
+      if(isRegister.value){
+        if(verifyCode != checkCode){
           Notify({
-            message: err.message || '请求失败',
+            message: '验证码错误',
             type: 'danger'
           });
-        })
+        } else {
+          // 注册
+          requestRegister(values)
+            .then(res => {
+              const { code, message } = res
+              if (code === 200) {
+                isRegister.value = false
+                username.value = password.value = undefined
+                Notify({
+                  message: message,
+                  type: 'success'
+                });
+              } else {
+                Notify({
+                  message: message,
+                  type: 'danger'
+                });
+              }
+            })
+            .catch(err => {
+              console.log(err);
+              Notify({
+                message: err.message || '请求失败',
+                type: 'danger'
+              });
+            })
+        }
+      } else {
+        // 登录
+        requestLogin(values)
+          .then(res => {
+            if (res.code === 200) {
+              router.push('/main/me')
+            } else {
+              Notify({
+                message: res.message,
+                type: 'danger'
+              });
+            }
+          })
+          .catch(err => {
+            console.log(err);
+            Notify({
+              message: err.message || '请求失败',
+              type: 'danger'
+            });
+          })
+      }
     };
     return {
       username,

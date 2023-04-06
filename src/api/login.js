@@ -8,4 +8,15 @@ function requestLogin(params) {
   })
 }
 
-export { requestLogin } 
+function requestRegister(params) {
+  return request({
+    url: '/user/register',
+    method: 'post',
+    data: params
+  })
+}
+
+export { 
+  requestLogin,
+  requestRegister
+} 

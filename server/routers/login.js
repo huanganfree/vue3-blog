@@ -10,7 +10,7 @@ router.post('/login', function(req, res) {
   const { username, password } = req.body || {}
   dbQueryPromise(`SELECT password FROM user WHERE username='${username}'`) //mysql中间件无法识别传入参数
     .then((results) => {
-      console.log('results==', results);
+      console.log('results-login==', results);
       const [obj] = results
       if(!results.length) {
         res.json({
@@ -32,6 +32,35 @@ router.post('/login', function(req, res) {
     })
     .catch(err => {
       console.log(err);
+    })
+})
+
+router.post('/register', function(req, res) {
+  const { username, password } = req.body || {}
+  dbQueryPromise(`SELECT password FROM user WHERE username='${username}'`)
+    .then((results) => {
+      console.log('results-register==', results);
+      if(results.length) {
+        res.json({
+          code: 111000,
+          message: '该用户名已被占用'
+        })
+      } else {
+        dbQueryPromise(`INSERT INTO user (username, password) VALUES ('${username}', '${password}')`)
+          .then((results) => {
+            console.log('results-register-insert==', results);
+            const { insertId } = results
+            if(insertId){
+              res.json({
+                code: 200,
+                message: '注册成功'
+              })
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          })
+      }
     })
 })
 
