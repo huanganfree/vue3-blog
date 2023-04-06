@@ -7,6 +7,7 @@ const express = require('express')
 const expressSession = require('express-session')
 const userRouter = require('./routers/user')
 const aboutRouter = require('./routers/about')
+const userInfoRouter = require('./routers/userInfo')
 const uploadRouter = require('./routers/multer/upload')
 const { auth } = require('./middleware/auth')
 const { port } = require('./utils/commonData')
@@ -36,7 +37,7 @@ app.use(expressSession({
 
 app.use('/user', userRouter)
 
-app.use(auth, [aboutRouter, uploadRouter])
+app.use(auth, [aboutRouter, uploadRouter,userInfoRouter])
 
 app.listen(port, () => {
   console.log('server is running in 8000!');

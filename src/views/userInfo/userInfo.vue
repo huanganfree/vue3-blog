@@ -69,13 +69,12 @@ export default {
       requestUserInfo()
         .then(res => {
           const { code, message, data } = res
-          const { avatarUrl } = data
           if(code == 200){
-            this.imgList.value = [{url: avatarUrl}]
+            this.imgList = [{url: data}]
           } else {
             Notify({
               message: message,
-              type: 'success'
+              type: 'danger'
             });
           }
         })
