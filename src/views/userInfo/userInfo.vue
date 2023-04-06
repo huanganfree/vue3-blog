@@ -26,9 +26,10 @@ div.avatar{
 }
 </style>
 <script>
-import NavBar from '@/components/NavBar.vue'
-import { requestUserInfoUpload } from '@/api/userInfo.js'
-import { ref } from 'vue'
+import NavBar from '@/components/NavBar.vue';
+import { requestUserInfoUpload, requestUserInfo } from '@/api/userInfo.js';
+import { ref } from 'vue';
+import { Notify } from 'vant';
 
 export default {
   name: 'UserInfo',
@@ -59,6 +60,26 @@ export default {
     return {
       property: 'value',
     };
+  },
+  mounted(){
+    this.initData()
+  },
+  methods:{
+    initData(){
+      requestUserInfo()
+        .then(res => {
+          const { code, message, data } = res
+          const { avatarUrl } = data
+          if(code == 200){
+            this.imgList.value = [{url: avatarUrl}]
+          } else {
+            Notify({
+              message: message,
+              type: 'success'
+            });
+          }
+        })
+    }
   }
 }
 </script>

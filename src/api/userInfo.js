@@ -8,4 +8,12 @@ function requestUserInfoUpload(params) {
   })
 }
 
-export { requestUserInfoUpload } 
+function requestUserInfo(params) {
+  return request({
+    url: '/userInfo',
+    method: 'get',
+    params
+  })
+}
+
+export { requestUserInfoUpload, requestUserInfo } 

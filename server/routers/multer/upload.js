@@ -5,6 +5,7 @@ const multerConfig = require('./multerConfig')
 const { port } = require('../../utils/commonData')
 const fse = require('fs-extra')
 const path = require('path') 
+const dbQueryPromise = require('../../db/dbOperation')
 
 // 上传到服务器地址
 const BaseURL = 'http://localhost:' + port
@@ -24,11 +25,18 @@ function uploadAvatar(req, res) {
           })
         } else {
         // 拼接成完整的服务器静态资源图片路径
-          res.json({
-            code: 200,
-            data: BaseURL + imgPath + req.file.filename,
-            message: '上传成功'
-          })
+          dbQueryPromise(`UPDATE user SET avatar='${req.file.filename}' WHERE id = '${req.session.userId}'`)
+            .then((results) => {
+              console.log('results--UPDATE user SET', results);
+              res.json({
+                code: 200,
+                data: BaseURL + imgPath + req.file.filename,
+                message: '上传成功'
+              })
+            })
+            .catch(err => {
+              console.log(err);
+            })
         }
       })
     })

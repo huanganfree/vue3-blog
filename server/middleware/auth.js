@@ -1,8 +1,8 @@
 /**
  * 校验用户
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
  */
 const auth = (req, res, next) => {
   const userName = req.session.username;
@@ -12,7 +12,7 @@ const auth = (req, res, next) => {
   } else {
     res.json({
       code: 401,
-      message: '登录失效'
+      message: '登录失效，请重新登录'
     })
     next('router')
   }

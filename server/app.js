@@ -5,7 +5,7 @@
  */
 const express = require('express')
 const expressSession = require('express-session')
-const loginRouter = require('./routers/login')
+const userRouter = require('./routers/user')
 const aboutRouter = require('./routers/about')
 const uploadRouter = require('./routers/multer/upload')
 const { auth } = require('./middleware/auth')
@@ -34,7 +34,7 @@ app.use(expressSession({
   cookie: { maxAge: 1000 * 60 * 60 }
 }));
 
-app.use('/user', loginRouter)
+app.use('/user', userRouter)
 
 app.use(auth, [aboutRouter, uploadRouter])
 

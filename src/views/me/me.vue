@@ -132,6 +132,8 @@
 </style>
 <script>
 import { useRouter } from 'vue-router'
+import { Notify } from 'vant';
+import { requestLogout } from '@/api/me.js'
 
 export default {
   name:'Me',
@@ -143,7 +145,23 @@ export default {
     ]
     const router = useRouter()
     const handleLogOout = () => {
-      router.push('/')
+      requestLogout().
+        then(res => {
+          const { code, message } = res
+          if(code == 200){
+            Notify({
+              message: message,
+              type: 'success'
+            });
+            router.push('/')
+          } else {
+            Notify({
+              message: message,
+              type: 'danger'
+            });
+          }
+        })
+      
     }
     return {
       handleLogOout,
