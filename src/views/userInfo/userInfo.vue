@@ -68,11 +68,15 @@ export default {
     initData(){
       requestUserInfo()
         .then(res => {
-          const { code, data } = res
+          const { code, data, message } = res
           if(code == 200){
             this.imgList = [{url: data}]
           } else {
             this.imgList = []
+            Notify({
+              message: message,
+              type: 'danger'
+            });
           }
         })
     }
