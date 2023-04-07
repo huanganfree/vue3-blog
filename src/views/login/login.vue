@@ -77,6 +77,7 @@
           block
           type="primary"
           native-type="submit"
+          :loading="loadingBtn"
         >
           {{ !isRegister ? `登录` : `注册` }}
         </van-button>
@@ -123,6 +124,7 @@ export default {
     const router = useRouter()
     const isRegister = ref(false)
     const verifyCode = ref('')
+    const loadingBtn = ref(false)
     const loginBg = LoginBg
     const onSubmit = (values) => {
       const { verifyCode } = values
@@ -134,8 +136,10 @@ export default {
           });
         } else {
           // 注册
+          loadingBtn.value = true
           requestRegister(values)
             .then(res => {
+              loadingBtn.value = false
               const { code, message } = res
               if (code === 200) {
                 isRegister.value = false
@@ -161,8 +165,10 @@ export default {
         }
       } else {
         // 登录
+        loadingBtn.value = true
         requestLogin(values)
           .then(res => {
+            loadingBtn.value = false
             if (res.code === 200) {
               router.push('/main/me')
             } else {
@@ -188,7 +194,8 @@ export default {
       eyeIconChange,
       loginBg,
       isRegister,
-      verifyCode
+      verifyCode,
+      loadingBtn
     };
   },
   methods:{
