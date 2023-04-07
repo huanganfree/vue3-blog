@@ -1,4 +1,4 @@
-# 移动端博客项目简单模板
+# 移动端博客
 ## 技术
 - 前端技术栈：vue3 + vant + vue-router4 + vuex4
 - 后端技术栈：node + express + mysql
@@ -14,5 +14,7 @@ npm run serve
 ```
 npm run start:server
 ```
+## todo
+- 登录输入框增加清除按钮
 
 
