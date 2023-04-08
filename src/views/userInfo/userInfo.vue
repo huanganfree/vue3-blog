@@ -70,7 +70,7 @@ export default {
         .then(res => {
           const { code, data, message } = res
           if(code == 200){
-            this.imgList = [{url: data}]
+            this.imgList = [{url: data.avatar}]
           } else {
             this.imgList = []
             Notify({

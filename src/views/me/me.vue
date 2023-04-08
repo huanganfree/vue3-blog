@@ -8,7 +8,7 @@
         <div class="user-name">
           <div class="name">
             <span>用户名：</span>
-            <span>admin</span>
+            <span>{{ username }}</span>
           </div>
           <div class="signature">
             <svg
@@ -17,10 +17,12 @@
             >
               <use :xlink:href="`#icon-shuziqianming`" />
             </svg>:
-            路在脚下
+            {{ signature }}
           </div>
         </div>
-        <img :src="require('@/assets/image/avatar.jpg')">
+        <div class="avatar">
+          <img :src="avatar">
+        </div>
       </div>
     </div>
     <div class="userInfo-operation">
@@ -81,10 +83,15 @@
           }
         }
       }
-      img{
-        width: 60px;
-        border-radius: 8px;
-        align-self: flex-start;
+      .avatar{
+        width: 1.6rem;
+        height: 1.6rem;
+        img{
+          object-fit: cover;
+          border-radius: 8px;
+          height: 100%;
+          width: 100%;
+        }
       }
     }
   }
@@ -134,6 +141,8 @@
 import { useRouter } from 'vue-router'
 import { Notify } from 'vant';
 import { requestLogout } from '@/api/me.js'
+import { requestUserInfo } from '@/api/userInfo.js'
+import { ref } from 'vue';
 
 export default {
   name:'Me',
@@ -144,6 +153,10 @@ export default {
       {icon: 'icon-guanyuwomen',  name: '关于我们', path: '/about'}
     ]
     const router = useRouter()
+    const username = ref(undefined)
+    const signature = ref(undefined)
+    const avatar = ref(undefined)
+
     const handleLogOout = () => {
       requestLogout().
         then(res => {
@@ -165,7 +178,34 @@ export default {
     }
     return {
       handleLogOout,
-      operationList
+      operationList,
+      username,
+      signature,
+      avatar
+    }
+  },
+  mounted(){
+    this.initData()
+  },
+  methods:{
+    initData(){
+      requestUserInfo()
+        .then(res => {
+          const { code, data, message } = res
+          if(code == 200){
+            const {avatar,username,signature } = data || {}
+
+            this.avatar = avatar
+            this.username =username
+            this.signature = signature
+          } else {
+            this.imgList = []
+            Notify({
+              message: message,
+              type: 'danger'
+            });
+          }
+        })
     }
   }
 };

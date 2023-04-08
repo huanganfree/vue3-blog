@@ -9,7 +9,7 @@ router.use((req, res, next) => {
 
 router.get('/userInfo', function(req, res) {
   const userId = req.session.userId
-  dbQueryPromise(`SELECT id, avatar FROM user WHERE id='${userId}'`) //mysql中间件无法识别传入参数
+  dbQueryPromise(`SELECT * FROM user WHERE id='${userId}'`) //mysql中间件无法识别传入参数
     .then((results) => {
       console.log('results-login==', results);
       const [obj] = results
@@ -18,7 +18,10 @@ router.get('/userInfo', function(req, res) {
         res.json({
           code: 200,
           message: '成功',
-          data: BaseURL + imgPath + avatar
+          data: {
+            ...obj,
+            avatar: BaseURL + imgPath + avatar
+          }
         })
       } else {
         res.json({
