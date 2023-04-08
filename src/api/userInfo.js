@@ -16,4 +16,12 @@ function requestUserInfo(params) {
   })
 }
 
-export { requestUserInfoUpload, requestUserInfo } 
+function submitUserInfo(params) {
+  return request({
+    url: '/userInfo',
+    method: 'post',
+    data: params
+  })
+}
+
+export { requestUserInfoUpload, requestUserInfo,submitUserInfo } 

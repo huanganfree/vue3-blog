@@ -36,4 +36,18 @@ router.get('/userInfo', function(req, res) {
     })
 })
 
+router.post('/userInfo', function(req, res) {
+  const userId = req.session.userId
+  dbQueryPromise(`UPDATE user SET signature='${req.body.signature || ''}' WHERE id='${userId}'`) //mysql中间件无法识别传入参数
+    .then(() => {
+      res.json({
+        code: 200,
+        message: '修改成功'
+      })
+    })
+    .catch(err => {
+      console.log(err);
+    })
+})
+
 module.exports = router

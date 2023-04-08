@@ -95,7 +95,7 @@
   height: 4.3rem;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 120%;
 }
 .user-tip{
   font-size: 14px;
@@ -201,7 +201,6 @@ export default {
   methods:{
     getCode(code) {
       checkCode = code
-      console.log(checkCode);
     },
     updateVerifyCode(){
       this.$refs.verify.display()
