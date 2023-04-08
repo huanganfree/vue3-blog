@@ -8,16 +8,18 @@
       v-model="isLoading"
       @refresh="onRefresh"
     >
-      <div class="articel-wrapper">
-        <div
-          v-for="item in listData"
-          :key="item.id"
-          class="articel"
-        >
-          {{ item.article }}
+      <div class="article-wrapper">
+        <div v-if="listData.map(item => item.article).join('').length">
+          <div
+            v-for="item in (listData)"
+            :key="item.id"
+            class="article"
+          >
+            {{ item.article }}
+          </div>
         </div>
         <van-empty
-          v-if="!listData.length"
+          v-else
           image="error"
           description="暂无数据"
         />
@@ -36,10 +38,10 @@
 .about{
   padding: 46px 15px 0 15px;
 }
-.articel-wrapper{
+.article-wrapper{
   height: calc(100vh - 47px);
 }
-.articel{
+.article{
   font-size: 14px;
   line-height: 23px;
   text-indent: 2em;
