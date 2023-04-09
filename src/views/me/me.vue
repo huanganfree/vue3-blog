@@ -149,7 +149,7 @@ export default {
   setup() {
     const operationList = [
       {icon: 'icon-xiugai',  name: '用户信息修改', path: '/userInfo'},
-      {icon: 'icon-A',  name: '重置密码'},
+      {icon: 'icon-A',  name: '重置密码', path: '/resetPassword'},
       {icon: 'icon-guanyuwomen',  name: '关于我们', path: '/about'}
     ]
     const router = useRouter()

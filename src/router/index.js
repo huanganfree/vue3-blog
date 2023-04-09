@@ -61,6 +61,14 @@ const routes = [
         meta: {
           title: '用户信息修改'
         }
+      },
+      {
+        path: '/resetPassword',
+        name: 'resetPassword',
+        component: _import('resetPassword/resetPassword'),
+        meta: {
+          title: '重置密码'
+        }
       }
     ]
   },
