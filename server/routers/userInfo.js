@@ -14,22 +14,14 @@ router.get('/userInfo', function(req, res) {
       console.log('results-login==', results);
       const [obj] = results
       const { avatar } = obj
-      if(avatar) {
-        res.json({
-          code: 200,
-          message: '成功',
-          data: {
-            ...obj,
-            avatar: BaseURL + imgPath + avatar
-          }
-        })
-      } else {
-        res.json({
-          code: 111000,
-          message: '失败',
-          data: null
-        })
-      }
+      res.json({
+        code: 200,
+        message: '成功',
+        data: {
+          ...obj,
+          avatar: avatar ? BaseURL + imgPath + avatar : null
+        }
+      })
     })
     .catch(err => {
       console.log(err);

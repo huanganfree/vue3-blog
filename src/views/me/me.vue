@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="avatar">
-          <img :src="avatar">
+          <img :src="avatar || require('@/assets/image/default-avatar.png')">
         </div>
       </div>
     </div>

@@ -200,6 +200,7 @@ export default {
   },
   methods:{
     getCode(code) {
+      console.log(code);
       checkCode = code
     },
     updateVerifyCode(){
