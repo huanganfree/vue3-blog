@@ -15,6 +15,7 @@ npm run serve
 npm run start:server
 ```
 ## todo
+- [x] 新注册用户默认头像
 - 登录输入框增加清除按钮
 
 
