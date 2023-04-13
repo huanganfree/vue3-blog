@@ -1,13 +1,14 @@
 <template>
   <van-tabbar
-    v-model="active"
+    :value="active"
     active-color="#007fff"
     inactive-color="#000"
     route
+    @change="onChange"
   >
     <van-tabbar-item
-      v-for="(item, i) in barArr"
-      :key="i"
+      v-for="(item) in barArr"
+      :key="item.path"
       :to="item.path"
     >
       {{ item.meta.title }}
@@ -31,15 +32,22 @@ export default {
   name: "TabBar",
   setup() {
     const barArr = ref(routes)
-
     const active = ref()
-
     return {
       barArr,
       active
     }
   },
-  methods: {},
+  methods: {
+    onChange(data){
+      if([0, 1].includes(parseFloat(data))){
+        this.$notify({message: '暂不开放', type: 'warning'})
+        this.active = 2
+      } else {
+        this.active = data
+      }
+    }
+  },
 };
 </script>
 

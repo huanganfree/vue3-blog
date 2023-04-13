@@ -156,24 +156,22 @@ export default {
     const username = ref(undefined)
     const signature = ref(undefined)
     const avatar = ref(undefined)
-
     const handleLogOout = () => {
-      requestLogout().
-        then(res => {
-          const { code, message } = res
-          if(code == 200){
-            Notify({
-              message: message,
-              type: 'success'
-            });
-            router.push('/')
-          } else {
-            Notify({
-              message: message,
-              type: 'danger'
-            });
-          }
-        })
+      requestLogout().then(res => {
+        const { code, message } = res
+        if(code == 200){
+          Notify({
+            message: message,
+            type: 'success'
+          });
+          router.push('/')
+        } else {
+          Notify({
+            message: message,
+            type: 'danger'
+          });
+        }
+      })
       
     }
     return {
@@ -194,7 +192,6 @@ export default {
           const { code, data, message } = res
           if(code == 200){
             const {avatar,username,signature } = data || {}
-
             this.avatar = avatar
             this.username =username
             this.signature = signature
