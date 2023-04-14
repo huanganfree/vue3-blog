@@ -4,6 +4,7 @@
     active-color="#007fff"
     inactive-color="#000"
     route
+    :before-change="onBeforeChange"
     @change="onChange"
   >
     <van-tabbar-item
@@ -39,10 +40,11 @@ export default {
     }
   },
   methods: {
-    onChange(data){
+    onBeforeChange(data) {
       if([0, 1].includes(parseFloat(data))){
         this.$notify({message: '暂不开放', type: 'warning'})
         this.active = 2
+        return false
       } else {
         this.active = data
       }

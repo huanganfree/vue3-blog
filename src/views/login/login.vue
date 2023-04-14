@@ -14,7 +14,7 @@
           name="username"
           label="用户名"
           placeholder="用户名(长度至少6位)"
-          :rules="[{pattern: /^[A-Za-z0-9-@!%#]{6,}$/, message: '请输入至少6位'}]"
+          :rules="rules"
           autocomplete="off"
           class="input-component"
         />
@@ -24,7 +24,7 @@
           name="password"
           label="密码"
           placeholder="密码(长度至少6位)"
-          :rules="[{pattern: /^[A-Za-z0-9-@!%#]{6,}$/, message: '请输入至少6位'}]"
+          :rules="rules"
           autocomplete="off"
           class="input-component"
         >
@@ -118,6 +118,7 @@ export default {
     'vue-verify-code':VueVerifyCode
   },
   setup() {
+    const rules = [{pattern: /^[A-Za-z0-9-@!%#]{6,}$/, message: '请输入至少6位'}]
     const username = ref("");
     const password = ref("");
     const eyeIconChange = ref('password');
@@ -166,7 +167,7 @@ export default {
       } else {
         // 登录
         loadingBtn.value = true
-        requestLogin(values)
+        requestLogin(values) 
           .then(res => {
             loadingBtn.value = false
             if (res.code === 200) {
@@ -195,7 +196,8 @@ export default {
       loginBg,
       isRegister,
       verifyCode,
-      loadingBtn
+      loadingBtn,
+      rules
     };
   },
   methods:{

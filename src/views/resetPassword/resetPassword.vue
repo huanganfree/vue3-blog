@@ -11,7 +11,7 @@
           :type="oldPasswordType"
           label="原密码"
           placeholder="请填写原密码"
-          :rules="[{ required: true, message: '请填写原密码' }]"
+          :rules="rules"
         >
           <template #right-icon>
             <van-icon
@@ -31,7 +31,7 @@
           :type="newPasswordType"
           label="新密码"
           placeholder="请填写新密码"
-          :rules="[{ required: true, message: '请填写新密码' }]"
+          :rules="rules"
         >
           <template #right-icon>
             <van-icon
@@ -51,7 +51,7 @@
           :type="surePasswordType"
           label="确认密码"
           placeholder="请再次填写新密码"
-          :rules="[{ required: true, message: '请再次填写新密码' }]"
+          :rules="rules"
         >
           <template #right-icon>
             <van-icon
@@ -100,7 +100,8 @@ export default {
       oldPasswordType: 'password',
       oldPassword: '',
       newPassword: '',
-      surePassword: ''
+      surePassword: '',
+      rules: [{pattern: /^[A-Za-z0-9-@!%#]{6,}$/, message: '请输入至少6位'}]
     };
   },
   created() {
@@ -109,14 +110,32 @@ export default {
   },
   methods: {
     onSubmit() {
+      if(this.newPassword !== this.surePassword) {
+        this.$notify({
+          type: 'danger',
+          message: '新密码有误！'
+        })
+        return
+      }
       const params = {
         oldPassword: this.oldPassword,
-        newPassword: this.newPassword,
-        surePassword: this.surePassword
+        newPassword: this.newPassword
       }
       requestResetPassword(params)
         .then(res => {
           console.log(res);
+          const { code,message} = res
+          if(code == 200){
+            this.$notify({
+              type: 'success',
+              message: '修改密码成功'
+            })
+          } else {
+            this.$notify({
+              type: 'danger',
+              message
+            })
+          }
         })
     }
   }
