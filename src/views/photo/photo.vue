@@ -20,4 +20,7 @@ export default {
 </script>
 
 <style scoped lang='scss'>
+.photo{
+  font-size: 16px;
+}
 </style>
