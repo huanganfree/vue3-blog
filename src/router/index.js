@@ -3,24 +3,24 @@ import MainPage from '@/components/MainPage.vue'
 
 const _import = router => () => import(`@/views/${router}.vue`) // 路由懒加载
 const tabBarData = [ // 用于tarBar组件的数组，统一数据源
-  { 
-    path: '/main/home',
-    name: 'home',
-    meta: {
-      title: '首页',
-      icon: 'icon-shouye', // 存储路由icon
-    },
-    component: _import('home/home')
-  },
-  {
-    path: '/main/photo',
-    name: 'photo',
-    meta: {
-      title: '相册',
-      icon: 'icon-xiangce',
-    },
-    component: _import('photo/photo')
-  },
+  // { 
+  //   path: '/main/home',
+  //   name: 'home',
+  //   meta: {
+  //     title: '首页',
+  //     icon: 'icon-shouye', // 存储路由icon
+  //   },
+  //   component: _import('home/home')
+  // },
+  // {
+  //   path: '/main/photo',
+  //   name: 'photo',
+  //   meta: {
+  //     title: '相册',
+  //     icon: 'icon-xiangce',
+  //   },
+  //   component: _import('photo/photo')
+  // },
   {
     path: '/main/me',
     name: 'me',
