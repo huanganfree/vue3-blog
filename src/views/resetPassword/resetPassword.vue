@@ -113,7 +113,7 @@ export default {
       if(this.newPassword !== this.surePassword) {
         this.$notify({
           type: 'danger',
-          message: '新密码有误！'
+          message: '新密码前后不一致！'
         })
         return
       }

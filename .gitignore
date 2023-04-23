@@ -2,6 +2,7 @@
 node_modules
 /dist
 *.xmind
+*.zip
 
 
 # local env files

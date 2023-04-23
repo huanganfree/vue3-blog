@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import MainPage from '@/components/MainPage.vue'
 
 const _import = router => () => import(`@/views/${router}.vue`) // 路由懒加载
@@ -87,7 +87,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
   strict: true,
   sensitive: true
