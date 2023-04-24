@@ -1,7 +1,7 @@
 # 移动端博客
 ## 技术
-- 前端技术栈：vue3 + vant + vue-router4
-- 后端技术栈：node + express + mysql
+- 前端：vue3 + vant + vue-router4
+- 后端：node + express + mysql
 
 ## 快速开始
 ### 前端服务启动
