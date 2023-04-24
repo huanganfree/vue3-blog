@@ -15,7 +15,9 @@ npm run serve
 npm run start:server
 ```
 ## TODOLIST
-- [x] 新注册用户默认头像
+- [x] 新注册用户添加默认头像
+- [x] 前端部署
+- [ ] 后端node部署
 - [ ] 登录输入框增加清除按钮
 - [ ] 自动化部署
 
