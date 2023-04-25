@@ -4,7 +4,7 @@ import {router} from '@/router/index.js'
 
 // 这里就是提供了实例的默认值，可以在具体请求方法中覆写
 const service = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: process.env.VUE_APP_REQUEST_BASEURL,
   timeout: 7000,
   withCredentials: true // 携带凭证
 })
