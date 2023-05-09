@@ -9,7 +9,7 @@
       v-for="(item) in barArr"
       :key="item.path"
       :name="item.path"
-      :to="item.path"
+      :to="item.meta.realPath"
     >
       {{ item.meta.title }}
       <template #icon>

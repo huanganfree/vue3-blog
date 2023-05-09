@@ -4,5 +4,5 @@ module.exports = {
   port: '3306', // 端口
   database: 'test', // 数据库名称
   user: 'root', // mysql用户名称
-  password: 'root', // mysql用户密码
+  password: 'root123456', // mysql用户密码
 }

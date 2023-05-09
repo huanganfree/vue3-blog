@@ -148,9 +148,9 @@ export default {
   name:'Me',
   setup() {
     const operationList = [
-      {icon: 'icon-xiugai',  name: '用户信息修改', path: '/userInfo'},
-      {icon: 'icon-A',  name: '重置密码', path: '/resetPassword'},
-      {icon: 'icon-guanyuwomen',  name: '关于我们', path: '/about'}
+      {icon: 'icon-xiugai',  name: '用户信息修改', path: '/main/userInfo'},
+      {icon: 'icon-A',  name: '重置密码', path: '/main/resetPassword'},
+      {icon: 'icon-guanyuwomen',  name: '关于我们', path: '/main/about'}
     ]
     const router = useRouter()
     const username = ref(undefined)

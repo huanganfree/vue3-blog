@@ -128,7 +128,8 @@ export default {
           if(code == 200){
             this.$notify({
               type: 'success',
-              message: '修改密码成功'
+              message: '修改密码成功',
+              onClose: () => { this.$router.push('/main/me') }
             })
           } else {
             this.$notify({

@@ -122,7 +122,8 @@ export default {
           if(code == 200){
             this.$notify({
               message: message,
-              type: 'success'
+              type: 'success',
+              onClose: () => { this.$router.push('/main/me') }
             })
           } else {
             Notify({

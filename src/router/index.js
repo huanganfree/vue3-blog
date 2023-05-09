@@ -22,11 +22,12 @@ const tabBarData = [ // 用于tarBar组件的数组，统一数据源
   //   component: _import('photo/photo')
   // },
   {
-    path: '/main/me',
+    path: 'me',
     name: 'me',
     meta: {
       title: '我的',
       icon: 'icon-gerenzhongxin',
+      realPath: '/main/me'
     },
     component: _import('me/me')
   }
@@ -47,27 +48,30 @@ const routes = [
     children: [
       ...tabBarData,
       {
-        path: '/about',
+        path: 'about',
         name: 'about',
         component: _import('about/about'),
         meta: {
-          title: '关于'
+          title: '关于',
+          realPath: '/main/about'
         }
       },
       {
-        path: '/userInfo',
+        path: 'userInfo',
         name: 'userInfo',
         component: _import('userInfo/userInfo'),
         meta: {
-          title: '用户信息修改'
+          title: '用户信息修改',
+          realPath: '/main/userInfo'
         }
       },
       {
-        path: '/resetPassword',
+        path: 'resetPassword',
         name: 'resetPassword',
         component: _import('resetPassword/resetPassword'),
         meta: {
-          title: '重置密码'
+          title: '重置密码',
+          realPath: '/main/resetPassword'
         }
       }
     ]
@@ -87,10 +91,8 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
-  routes,
-  strict: true,
-  sensitive: true
+  history: createWebHashHistory(process.env.BASE_URL),
+  routes
 })
 
 export { router, tabBarData as routes }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mainPage">
     <router-view />
     <!-- 如果整个MainPage组件卸载掉，下面的过渡不触发 -->
     <Transition>
