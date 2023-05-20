@@ -3,7 +3,7 @@
     <router-view />
     <!-- 如果整个MainPage组件卸载掉，下面的过渡不触发 -->
     <Transition>
-      <TabBar v-if="['/main/home', '/main/me', '/main/photo'].includes(route.path)" /> 
+      <TabBar v-if="['/main/home', '/main/me', '/main/photo'].includes($route.path)" /> 
     </Transition> 
   </div>
 </template>
@@ -18,11 +18,4 @@
   transform: translateY(100px);
 }
 </style>
-
-<script setup>
-// eslint-disable-next-line no-unused-vars
-import TabBar from './TabBar.vue'
-import { useRoute } from "vue-router";
-// eslint-disable-next-line no-unused-vars
-const route = useRoute()
-</script>
+<!-- 这个组件，我用了script setup 后，开发环境路由正常，生产环境嵌套路由就出问题了。 -->
