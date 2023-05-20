@@ -12,7 +12,7 @@ const auth = (req, res, next) => {
   } else {
     res.json({
       code: 401,
-      message: '登录失效，请重新登录'
+      message: '请登录'
     })
     next('router')
   }

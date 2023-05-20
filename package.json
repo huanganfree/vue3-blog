@@ -13,7 +13,7 @@
     "core-js": "^3.6.5",
     "vant": "^3.2.5",
     "vue": "^3.0.0",
-    "vue-router": "^4.0.12",
+    "vue-router": "^4.1.6",
     "vue-verify-code": "^1.0.5",
     "vuex": "^4.0.2"
   },

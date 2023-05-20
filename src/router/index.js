@@ -1,5 +1,9 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import MainPage from '@/components/MainPage.vue'
+import { createRouter, createWebHashHistory } from 'vue-router';
+import MainPage from '@/components/MainPage.vue';
+import Me from '@/views/me/me.vue';
+import About from '@/views/about/about.vue';
+import UserInfo from '@/views/userInfo/userInfo.vue';
+import ResetPassword from '@/views/resetPassword/resetPassword.vue';
 
 const _import = router => () => import(`@/views/${router}.vue`) // 路由懒加载
 const tabBarData = [ // 用于tarBar组件的数组，统一数据源
@@ -29,7 +33,7 @@ const tabBarData = [ // 用于tarBar组件的数组，统一数据源
       icon: 'icon-gerenzhongxin',
       realPath: '/main/me'
     },
-    component: _import('me/me')
+    component: Me
   }
 ]
 
@@ -50,7 +54,7 @@ const routes = [
       {
         path: 'about',
         name: 'about',
-        component: _import('about/about'),
+        component: About,
         meta: {
           title: '关于',
           realPath: '/main/about'
@@ -59,7 +63,7 @@ const routes = [
       {
         path: 'userInfo',
         name: 'userInfo',
-        component: _import('userInfo/userInfo'),
+        component: UserInfo,
         meta: {
           title: '用户信息修改',
           realPath: '/main/userInfo'
@@ -68,7 +72,7 @@ const routes = [
       {
         path: 'resetPassword',
         name: 'resetPassword',
-        component: _import('resetPassword/resetPassword'),
+        component: ResetPassword,
         meta: {
           title: '重置密码',
           realPath: '/main/resetPassword'

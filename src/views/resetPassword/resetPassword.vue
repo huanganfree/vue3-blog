@@ -73,6 +73,7 @@
           block
           type="primary"
           native-type="submit"
+          :disabled="!oldPassword || !surePassword || !newPassword"
         >
           提交
         </van-button>
@@ -132,7 +133,7 @@ export default {
               onClose: () => { this.$router.push('/main/me') }
             })
           } else {
-            this.$notify({
+            message && this.$notify({
               type: 'danger',
               message
             })

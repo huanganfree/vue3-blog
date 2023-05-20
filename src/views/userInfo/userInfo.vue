@@ -29,6 +29,7 @@
         <van-button
           type="primary"
           class="submitBtn"
+          :disabled="isAlter"
           @click="handleSubmit"
         >
           提交
@@ -71,6 +72,7 @@ export default {
   setup(){
     const imgList = ref([])
     const signature = ref('')
+    const isAlter = ref(false)
     const afterRead = (file) => {
       const formData = new FormData()
       formData.append('file', file.file)
@@ -79,15 +81,23 @@ export default {
           const { code, message, data } = res
           if(code == 200){
             imgList.value = [{url: data}]
+            Notify({
+              message: message,
+              type: 'success'
+            })
           } else {
-            this.$notify(message)
+            message && Notify({
+              message: message,
+              type: 'danger'
+            })
           }
         })
     };
     return {
       afterRead,
       imgList,
-      signature
+      signature,
+      isAlter
     }
   },
   data() {

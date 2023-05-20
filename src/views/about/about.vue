@@ -74,7 +74,7 @@ export default {
             this.listData = data || []
           } else {
             this.listData = []
-            this.$notify(message)
+            message && this.$notify(message)
           }
         })
     },
