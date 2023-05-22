@@ -1,4 +1,3 @@
-# 移动端博客
 ## 技术
 - 前端：vue3 + vant + vue-router4
 - 后端：node + express + mysql
