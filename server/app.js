@@ -41,6 +41,6 @@ app.use('/user', userRouter)
 app.use(auth, [aboutRouter, uploadRouter,userInfoRouter, resetPasswordRouter])
 
 app.listen(port, () => {
-  console.log('server is running in 8000!');
+  console.log(`server is running in ${port}!`);
 })
 
