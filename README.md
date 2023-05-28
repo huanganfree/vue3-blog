@@ -1,4 +1,3 @@
-# 移动端博客
 ## 技术
 - 前端：vue3 + vant + vue-router4
 - 后端：node + express + mysql
@@ -18,7 +17,7 @@ npm run start:server
 - [x] 新注册用户添加默认头像
 - [x] 前端部署
 - [ ] 如何优雅更新服务器node代码，停止服务器node服务
-- [ ] 后端node部署
+- [x] 后端node部署
 - [ ] 登录输入框增加清除按钮
 - [ ] 自动化部署
 
