@@ -114,7 +114,7 @@ export default {
         .then(res => {
           const { code, data, message } = res
           if(code == 200){
-            this.imgList = [{url: data.avatar}]
+            this.imgList = data.avatar ? [{url: data.avatar}] : []
             this.signature = data.signature
           } else {
             this.imgList = []
