@@ -8,7 +8,7 @@
         <div class="user-name">
           <div class="name">
             <span>用户名：</span>
-            <span>{{ username }}</span>
+            <span>{{ username || '--' }}</span>
           </div>
           <div class="signature">
             <svg
@@ -17,7 +17,7 @@
             >
               <use :xlink:href="`#icon-shuziqianming`" />
             </svg>:
-            {{ signature }}
+            {{ signature || '请编辑你的签名' }}
           </div>
         </div>
         <div class="avatar">

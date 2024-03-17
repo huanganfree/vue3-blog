@@ -157,6 +157,7 @@ export default {
               }
             })
             .catch(err => {
+              loadingBtn.value = false
               console.log(err);
               Notify({
                 message: err.message || '请求失败',
@@ -180,6 +181,7 @@ export default {
             }
           })
           .catch(err => {
+            loadingBtn.value = false
             console.log(err);
             Notify({
               message: err.message || '请求失败',
