@@ -12,7 +12,14 @@
         v-model="imgList"
         :after-read="afterRead"
         :max-count="1"
+        accept=".doc,.docx,.xls,.xlsx,.pdf,.jpg,.jpeg,.png"
       />
+      <van-button
+        type="primary"
+        @click="handleDownload"
+      >
+        下载
+      </van-button>
       <div class="small-title-margin">
         签名
       </div>
@@ -60,7 +67,7 @@ div.avatar{
 </style>
 <script>
 import NavBar from '@/components/NavBar.vue';
-import { requestUserInfoUpload, requestUserInfo, submitUserInfo } from '@/api/userInfo.js';
+import { requestUserInfoUpload, requestUserInfo, submitUserInfo, requestDownload } from '@/api/userInfo.js';
 import { ref } from 'vue';
 import { Notify } from 'vant';
 
@@ -142,6 +149,36 @@ export default {
             });
           }
         })
+    },
+    handleDownload() {
+      requestDownload({ url: this.imgList[0]?.url })
+        .then(res => {
+          console.log(res);
+          if (res) {
+            const blob = new Blob([res], { type: 'application/pdf' })
+            console.log(blob);
+            const url = window.URL.createObjectURL(blob)
+            const a = document.createElement('a')
+            a.href = url
+            a.download = 'a.pdf' // 设置下载的文件名
+            document.body.appendChild(a)
+            a.click()
+            document.body.removeChild(a)
+            window.URL.revokeObjectURL(url)
+          } else {
+            Notify({
+              message: '下载失败，请稍后再试',
+              type: 'danger'
+            });
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          Notify({
+            message: '下载失败，请稍后再试',
+            type: 'danger'
+          });
+        });
     }
   }
 }

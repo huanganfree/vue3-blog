@@ -24,4 +24,19 @@ function submitUserInfo(params) {
   })
 }
 
-export { requestUserInfoUpload, requestUserInfo,submitUserInfo } 
+// 下载
+function requestDownload(params) {
+  return request({
+    url: '/download',
+    method: 'get',
+    params,
+    responseType: 'blob' // 设置响应类型为 blob,添加这个才能正确下载文件流
+  })
+}
+
+export {
+  requestUserInfoUpload,
+  requestUserInfo,
+  submitUserInfo,
+  requestDownload
+} 
