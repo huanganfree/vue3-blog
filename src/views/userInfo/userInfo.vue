@@ -151,7 +151,8 @@ export default {
         })
     },
     handleDownload() {
-      requestDownload({ url: this.imgList[0]?.url })
+      const fileName = this.imgList[0]?.url.split('/').pop();
+      requestDownload({ fileName: fileName })
         .then(res => {
           console.log(res);
           if (res) {
