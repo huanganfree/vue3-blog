@@ -152,16 +152,27 @@ export default {
     },
     handleDownload() {
       const fileName = this.imgList[0]?.url.split('/').pop();
+      const suffix = fileName ? fileName.split('.').pop() : '';
+      const downType = {
+        pdf: 'application/pdf',
+        doc: 'application/msword',
+        docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        xls: 'application/vnd.ms-excel',
+        xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        jpg: 'image/jpeg',
+        jpeg: 'image/jpeg',
+        png: 'image/png'
+      }[suffix]
       requestDownload({ fileName: fileName })
         .then(res => {
           console.log(res);
           if (res) {
-            const blob = new Blob([res], { type: 'application/pdf' })
+            const blob = new Blob([res], { type: downType })
             console.log(blob);
             const url = window.URL.createObjectURL(blob)
             const a = document.createElement('a')
             a.href = url
-            a.download = 'a.pdf' // 设置下载的文件名
+            a.download = '文件' // 设置下载的文件名
             document.body.appendChild(a)
             a.click()
             document.body.removeChild(a)
