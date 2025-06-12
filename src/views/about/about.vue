@@ -4,7 +4,19 @@
       title="关于我们"
       :on-click-left="() => $router.push('/main/me')"
     />
+    
     <div class="article-wrapper">
+      <van-search
+        v-model="keyWords"
+        placeholder="请输入搜索关键词"
+        show-action
+      >
+        <template #action>
+          <div @click="onClickButton">
+            搜索
+          </div>
+        </template>
+      </van-search>
       <div v-if="listData.length">
         <van-list
           v-model:loading="loading"
@@ -47,7 +59,7 @@
 </style>
 <script>
 import NavBar from '@/components/NavBar.vue'
-import { requestAbout } from '@/api/about.js'
+import { requestAbout, requestSearch } from '@/api/about.js'
 export default {
   components: {
     NavBar
@@ -58,7 +70,8 @@ export default {
       loading: false,
       finished: true,
       pageSize: 10,
-      pageNum: 1
+      pageNum: 1,
+      keyWords: ''
     };
   },
   mounted() {
@@ -89,6 +102,9 @@ export default {
             message && this.$notify(message)
           }
         })
+    },
+    onClickButton(){
+
     },
     onRefresh() {
       this.initData()

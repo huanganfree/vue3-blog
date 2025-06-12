@@ -8,4 +8,12 @@ function requestAbout(params) {
   })
 }
 
-export { requestAbout }
+function requestSearch(data) {
+  return request({
+    url: '/search',
+    method: 'post',
+    data
+  })
+}
+
+export { requestAbout,requestSearch }
