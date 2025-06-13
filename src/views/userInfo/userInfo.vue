@@ -163,9 +163,8 @@ export default {
         jpeg: 'image/jpeg',
         png: 'image/png'
       }[suffix]
-      requestDownload({ fileName: fileName })
+      requestDownload({ fileName })
         .then(res => {
-          console.log(res);
           if (res) {
             const blob = new Blob([res], { type: downType })
             console.log(blob);
@@ -178,19 +177,12 @@ export default {
             document.body.removeChild(a)
             window.URL.revokeObjectURL(url)
           } else {
-            Notify({
-              message: '下载失败，请稍后再试',
-              type: 'danger'
-            });
+            // Notify({
+            //   message: '下载失败，请稍后再试',
+            //   type: 'danger'
+            // });
           }
         })
-        .catch(err => {
-          console.error(err);
-          Notify({
-            message: '下载失败，请稍后再试',
-            type: 'danger'
-          });
-        });
     }
   }
 }
