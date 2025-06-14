@@ -8,12 +8,12 @@ function requestAbout(params) {
   })
 }
 
-function requestSearch(data) {
+function requestKeyWordsSearch(data) {
   return request({
-    url: '/search',
+    url: '/about/search',
     method: 'post',
     data
   })
 }
 
-export { requestAbout,requestSearch }
+export { requestAbout,requestKeyWordsSearch }

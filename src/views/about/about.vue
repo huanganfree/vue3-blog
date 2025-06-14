@@ -59,7 +59,7 @@
 </style>
 <script>
 import NavBar from '@/components/NavBar.vue'
-import { requestAbout, requestSearch } from '@/api/about.js'
+import { requestAbout, requestKeyWordsSearch } from '@/api/about.js'
 export default {
   components: {
     NavBar
@@ -104,7 +104,18 @@ export default {
         })
     },
     onClickButton(){
-
+      requestKeyWordsSearch({
+        keyWords: this.keyWords,
+        pageSize: this.pageSize,
+        pageNum: this.pageNum
+      })
+        .then(res => {
+          const { code, message, data } = res
+          if (code == 200) {
+            this.listData = data || []
+            this.finished = true
+          } 
+        })
     },
     onRefresh() {
       this.initData()
