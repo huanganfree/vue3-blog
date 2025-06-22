@@ -160,10 +160,10 @@ export default {
       requestLogout().then(res => {
         const { code, message } = res
         if(code == 200){
-          Notify({
-            message: message,
-            type: 'success'
-          });
+          // Notify({
+          //   message: message,
+          //   type: 'success'
+          // });
           router.push('/')
         } else {
           Notify({
