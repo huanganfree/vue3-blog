@@ -1,6 +1,6 @@
 ## 技术
 - 前端：vue3 + vant + vue-router4
-- 后端：node + express + mysql + pm2
+- 后端：node + express + mysql + sequelize + pm2
 
 ## 快速开始
 ### 前端服务启动
