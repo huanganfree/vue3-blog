@@ -1,6 +1,6 @@
 ## 技术
 - 前端：vue3 + vant + vue-router4
-- 后端：node + express + mysql
+- 后端：node + express + mysql + pm2
 
 ## 快速开始
 ### 前端服务启动
@@ -18,7 +18,7 @@ npm run start:server
 - [x] 前端部署
 - [ ] 如何优雅更新服务器node代码，停止服务器node服务
 - [x] 后端node部署
-- [ ] 登录输入框增加清除按钮
+- [x] 登录输入框增加清除按钮
 - [ ] 自动化部署
 
 
