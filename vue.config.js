@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/my-project/blog/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/ha-project/blog/' : '/',
   pages: {
     index: {
       // page 的入口
