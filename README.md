@@ -20,6 +20,7 @@ npm run start:server
 - [x] 后端node部署
 - [x] 登录输入框增加清除按钮
 - [ ] 自动化部署
-
-
+## 图片介绍
+![Image Text](https://github.com/huanganfree/vue3-blog/blob/main/public/1.jpg)
+![Image Text](https://github.com/huanganfree/vue3-blog/blob/main/public/2.jpg)
 
